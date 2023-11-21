@@ -12,5 +12,12 @@ install:
 test:
 	@$(VENV_PATH)/bin/pytest -rP
 
+test-ci:
+	@$(VENV_PATH)/bin/pytest -rP
+	@$(VENV_PATH)/bin/flake8 src
+
 run:
 	@python3 src/main.py
+
+lint:
+	@$(VENV_PATH)/bin/flake8 src

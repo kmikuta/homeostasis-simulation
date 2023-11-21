@@ -4,7 +4,14 @@ from receptor import DelayedReceptor
 
 
 class ControlUnit:
-    def __init__(self, initial_value, outflow_rate, delay, molecular_activity, threshold):
+    def __init__(
+        self,
+        initial_value,
+        outflow_rate,
+        delay,
+        molecular_activity,
+        threshold
+    ):
         self.state = ProductState(initial_value)
         self.receptor = DelayedReceptor(threshold, delay, initial_value)
         self.effector = Effector(molecular_activity)
@@ -13,7 +20,7 @@ class ControlUnit:
 
     def state_snapshot(self):
         return self.state.value
-    
+
     def perform_step(self):
         self.perform_production()
         self.evaluate_receptor()

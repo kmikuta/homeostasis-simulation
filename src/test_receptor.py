@@ -14,10 +14,11 @@ def test_initial_values_in_receptor():
     assert receptor.read_signal() == expected_signal
     assert receptor.read_signal() == expected_signal
 
+
 def test_read_signal_forgets_values():
     # given
     receptor = DelayedReceptor(threshold=5, delay=3, initial_value=1)
-    
+
     # when
     receptor.read_signal()
     receptor.update(2)
@@ -27,10 +28,11 @@ def test_read_signal_forgets_values():
     assert receptor.read_signal() == 0.8
     assert receptor.read_signal() == 0.6
 
+
 def test_receptor_memory_is_fifo():
     # given
     receptor = DelayedReceptor(threshold=5, delay=3, initial_value=1)
-    
+
     # when
     receptor.read_signal()
     receptor.read_signal()
@@ -43,6 +45,7 @@ def test_receptor_memory_is_fifo():
     assert receptor.read_signal() == 0
     assert receptor.read_signal() == 0.2
     assert receptor.read_signal() == 0.8
+
 
 def test_signal_is_never_negative():
     # given

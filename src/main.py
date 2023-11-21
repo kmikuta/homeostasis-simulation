@@ -3,7 +3,12 @@ from matplotlib.pyplot import figure
 from control import ControlUnit
 
 # control units
-unit = ControlUnit(initial_value=0, outflow_rate=0.2, delay=8, molecular_activity=4, threshold=6)
+unit = ControlUnit(
+    initial_value=0,
+    outflow_rate=0.2,
+    delay=8,
+    molecular_activity=4,
+    threshold=6)
 
 # simulation
 simulation_time = 200

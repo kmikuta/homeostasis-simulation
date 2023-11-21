@@ -1,5 +1,6 @@
 from queue import Queue
 
+
 class DelayedReceptor():
     def __init__(self, threshold, delay, initial_value):
         self._threshold = threshold

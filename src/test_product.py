@@ -8,6 +8,7 @@ def test_product_state_has_initial_value():
     # when / then
     assert state.value == 1
 
+
 def test_product_state_adds_to_value():
     # given
     state = ProductState(initial_value=1)
@@ -18,6 +19,7 @@ def test_product_state_adds_to_value():
 
     # then
     assert state.value == 6
+
 
 def test_product_state_subtracts_to_value():
     # given
