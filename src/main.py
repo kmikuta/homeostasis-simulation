@@ -1,18 +1,18 @@
 from effector import Effector
 from model import Model
-from product import ProductState
+from product import InifiniteSubstrate, ProductState
 from receptor import DelayedReceptor
 
-# control units
+# states
 state1 = ProductState(initial_value=0, outflow_rate=0.1)
 state2 = ProductState(initial_value=0, outflow_rate=0.1)
 state3 = ProductState(initial_value=0, outflow_rate=0.1)
-state4 = ProductState(initial_value=100000000000, outflow_rate=0.1)
 
+# units
 effector1 = Effector(
     id='unit1',
     state=state1,
-    substrate=state4,
+    substrate=InifiniteSubstrate(1000),
     receptor=DelayedReceptor(delay=5, threshold=6, state=state1),
     molecular_activity=4,
 )
@@ -20,7 +20,7 @@ effector1 = Effector(
 effector2 = Effector(
     id='unit2',
     state=state2,
-    substrate=state4,
+    substrate=InifiniteSubstrate(1000),
     receptor=DelayedReceptor(delay=5, threshold=4, state=state2),
     molecular_activity=3,
 )
@@ -28,14 +28,13 @@ effector2 = Effector(
 effector3 = Effector(
     id='unit3',
     state=state3,
-    substrate=state4,
+    substrate=InifiniteSubstrate(1000),
     receptor=DelayedReceptor(delay=5, threshold=3, state=state3),
     molecular_activity=2,
 )
 
-model = Model(effectors=[effector1, effector2, effector3])
-
 # simulation
+model = Model(effectors=[effector1, effector2, effector3])
 simulation_time = 200
 
 for _ in range(simulation_time):

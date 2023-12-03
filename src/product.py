@@ -11,3 +11,11 @@ class ProductState:
 
     def perform_outflow(self) -> None:
         self.subtract(self.outflow_rate * self.value)
+
+
+class InifiniteSubstrate(ProductState):
+    def __init__(self, initial_value: float):
+        self.value = initial_value
+
+    def subtract(self, value: float) -> None:
+        pass
