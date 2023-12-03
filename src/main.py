@@ -1,22 +1,42 @@
-import matplotlib.pyplot as plt
-from matplotlib.pyplot import figure
-from control import ControlUnit
+from effector import Effector
+from model import Model
+from product import ProductState
+from receptor import DelayedReceptor
 
 # control units
-unit = ControlUnit(
-    initial_value=0,
-    outflow_rate=0.2,
-    delay=8,
+state1 = ProductState(initial_value=0, outflow_rate=0.1)
+state2 = ProductState(initial_value=0, outflow_rate=0.1)
+state3 = ProductState(initial_value=0, outflow_rate=0.1)
+state4 = ProductState(initial_value=100000000000, outflow_rate=0.1)
+
+effector1 = Effector(
+    state=state1,
+    substrate=state4,
+    receptor=DelayedReceptor(delay=5, threshold=6, state=state1),
     molecular_activity=4,
-    threshold=6)
+)
+
+effector2 = Effector(
+    state=state2,
+    substrate=state4,
+    receptor=DelayedReceptor(delay=5, threshold=4, state=state2),
+    molecular_activity=3,
+)
+
+effector3 = Effector(
+    state=state3,
+    substrate=state4,
+    receptor=DelayedReceptor(delay=5, threshold=3, state=state3),
+    molecular_activity=2,
+)
+
+model = Model(effectors=[effector1, effector2, effector3])
 
 # simulation
 simulation_time = 200
-threshold_values = [unit.threshold] * simulation_time
-results = list(map(lambda _: unit.perform_step(), range(simulation_time)))
+
+for _ in range(simulation_time):
+    model.perform_step()
 
 # results
-figure(figsize=(16, 9), dpi=80)
-plt.plot(results)
-plt.plot(threshold_values)
-plt.show()
+model.plot_results(['b', 'r', 'g'])
