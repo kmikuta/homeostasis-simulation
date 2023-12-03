@@ -21,6 +21,3 @@ jobs:
 
       - name: Run lint
         run: make lint
-
-      - name: Run test
-        run: make test

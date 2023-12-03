@@ -4,10 +4,12 @@ from receptor import Receptor
 
 class Effector:
     def __init__(self,
+                 id: str,
                  state: ProductState,
                  substrate: ProductState,
                  receptor: Receptor,
                  molecular_activity: float) -> None:
+        self.id = id
         self.state = state
         self.substrate = substrate
         self.receptor = receptor

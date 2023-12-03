@@ -1,4 +1,6 @@
 import matplotlib.pyplot as plt
+import numpy as np
+from scipy.interpolate import make_interp_spline
 from effector import Effector
 
 
@@ -24,9 +26,22 @@ class Model:
 
     def plot_results(self, plot_colors: list[str]) -> None:
         plt.figure(figsize=(16, 9), dpi=80)
+        legend = []
 
         for idx, effector in enumerate(self.effectors):
-            plt.plot(self.results[effector], plot_colors[idx] + '-')
-            plt.plot(self.thresholds[effector], plot_colors[idx] + '--')
+            y_values = np.array(self.results[effector])
+            x_values = np.array(range(y_values.size))
+            X_Y_Spline = make_interp_spline(x_values, y_values)
 
+            X_ = np.linspace(x_values.min(), x_values.max(), 500)
+            Y_ = X_Y_Spline(X_)
+            T_ = self.thresholds[effector]
+
+            plt.plot(X_, Y_, plot_colors[idx] + '-')
+            plt.plot(T_, plot_colors[idx] + '--')
+
+            legend.append(effector.id + ' value')
+            legend.append(effector.id + ' threshold')
+
+        plt.legend(legend)
         plt.show()

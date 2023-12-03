@@ -10,6 +10,7 @@ state3 = ProductState(initial_value=0, outflow_rate=0.1)
 state4 = ProductState(initial_value=100000000000, outflow_rate=0.1)
 
 effector1 = Effector(
+    id='unit1',
     state=state1,
     substrate=state4,
     receptor=DelayedReceptor(delay=5, threshold=6, state=state1),
@@ -17,6 +18,7 @@ effector1 = Effector(
 )
 
 effector2 = Effector(
+    id='unit2',
     state=state2,
     substrate=state4,
     receptor=DelayedReceptor(delay=5, threshold=4, state=state2),
@@ -24,6 +26,7 @@ effector2 = Effector(
 )
 
 effector3 = Effector(
+    id='unit3',
     state=state3,
     substrate=state4,
     receptor=DelayedReceptor(delay=5, threshold=3, state=state3),
