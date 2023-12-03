@@ -34,10 +34,12 @@ effector3 = Effector(
 )
 
 # simulation
-model = Model(effectors=[effector1, effector2, effector3])
+model = Model(effectors=[effector1])
 simulation_time = 200
 
-for _ in range(simulation_time):
+for idx in range(simulation_time):
+    # if (idx == 100):
+    #     model.effectors[0].state.add(20)
     model.perform_step()
 
 # results

@@ -4,6 +4,8 @@ Simulation of the cell regulatory mechanisms with negative feedback loops, using
 
 ![Screenshot](docs/result_3_units.png)
 
+![Screenshot](docs/result_external_manipulation.png)
+
 ## Scripts
 
 - `make install` - create virtual env and install dependencies
